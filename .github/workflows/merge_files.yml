@@ -23,6 +23,13 @@ jobs:
           cat file*.txt > merged.txt
 
       - name: Commit and push
+        uses: actions/github-script@v3
+        with:
+            github-token: ${{secrets.GITHUB_TOKEN}}
+            script: |
+                console.log(context.pull_request.head)
+
+      - name: Commit and push
         run: |
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
             git config --global user.name "github-actions[bot]"
