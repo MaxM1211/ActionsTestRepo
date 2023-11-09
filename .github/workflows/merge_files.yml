@@ -34,8 +34,7 @@ jobs:
           echo "Staging"
           git add merged.txt
           echo "Committing"
-          git commit -m "Merged files"
+          git commit -am "Merged files"
           echo "Pushing"
-          echo "${{steps.extract_branch.outputs.branch}}"
           git push
           echo "All done"
