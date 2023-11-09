@@ -61,7 +61,7 @@ jobs:
 
             console.log('Committing "${message}" to ${owner}/${repo} on branch ${branch}');
 
-            console.log(${{steps.sha.outputs}})
+            console.log(${{steps.sha.outputs.result}})
 
             //console.log(github);
             github.rest.repos.createOrUpdateFileContents({
@@ -71,5 +71,5 @@ jobs:
               message,
               content: Buffer.from(content).toString('base64'),
               branch,
-              sha: ${{steps.sha.outputs}}
+              sha: ${{steps.sha.outputs.result}}
             });
