@@ -26,8 +26,10 @@ jobs:
         run: |
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
             git config --global user.name "github-actions[bot]"
-            echo "Committing"
+            echo "Staging"
             git add merged.txt
+            echo "Committing"
             git commit -m "Merged files"
+            echo "Pushing"
             git push $(context.pull_request.head)
-            echo "Commited"
+            echo "All done"
