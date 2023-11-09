@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install Node.js
         uses: actions/setup-node@v2
@@ -37,5 +37,5 @@ jobs:
           git commit -m "Merged files"
           echo "Pushing"
           echo "${{steps.extract_branch.outputs.branch}}"
-          git push origin HEAD:${{steps.extract_branch.outputs.branch}}
+          git push
           echo "All done"
