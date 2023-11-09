@@ -31,6 +31,7 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const fs = require('fs');
+            const { createHash } = require('crypto');
 
             console.log("begin");
 
@@ -52,5 +53,6 @@ jobs:
               path,
               message,
               content: Buffer.from(content).toString('base64'),
-              branch
+              branch,
+              sha:createHash('sha256').update(merged.txt)
             });
