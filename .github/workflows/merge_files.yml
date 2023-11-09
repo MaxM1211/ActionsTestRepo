@@ -36,4 +36,10 @@ jobs:
       - name: Commit and push
         uses: actions/github-script@v5
         with:
-          script: console.log(context)
+          script: |
+            github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '👋 Thanks for reporting!'
+            })
