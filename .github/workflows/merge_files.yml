@@ -24,7 +24,7 @@ jobs:
         uses: actions/github-script@v6
         id: sha
         with:
-          result-encoding: hex
+          result-encoding: string
           script: |
             const crypto = require('crypto');
             const fs = require('fs');
