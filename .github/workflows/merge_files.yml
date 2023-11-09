@@ -28,7 +28,7 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const fs = require('fs');
-            // const github = require('@actions/github');
+            const github_action = require('@actions/github');
             // const core = require('@actions/core');
 
             const path = 'merged.txt';
@@ -39,7 +39,7 @@ jobs:
             const repo = context.repo.repo;
 
             console.log('Committing "${message}" to ${owner}/${repo} on branch ${branch}');
-            github.getOctokit(core.getInput('github-token')).repos.createOrUpdateFileContents({
+            github_action.getOctokit(core.getInput('github-token')).repos.createOrUpdateFileContents({
               owner,
               repo,
               path,
