@@ -61,6 +61,7 @@ jobs:
 
             console.log('Committing "${message}" to ${owner}/${repo} on branch ${branch}');
 
+            console.log(${{steps.sha.outputs}})
 
             //console.log(github);
             github.rest.repos.createOrUpdateFileContents({
