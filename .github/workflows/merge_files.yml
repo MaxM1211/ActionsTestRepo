@@ -36,27 +36,4 @@ jobs:
       - name: Commit and push
         uses: actions/github-script@v5
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            console.error(1);
-            const fs = require('fs');
-            // const github = require('@actions/github');
-            // const core = require('@actions/core');
-            console.error(2);
-            const path = 'merged.txt';
-            const content = fs.readFileSync(path, 'utf8');
-            const message = 'Merged files';
-            console.error(3);
-            const branch = github.context.ref.replace('refs/heads/', '');
-            const owner = github.context.repo.owner;
-            const repo = github.context.repo.repo;
-
-            console.error(Committing "${message}" to ${owner}/${repo} on branch ${branch});
-            github.getOctokit(core.getInput('github-token')).repos.createOrUpdateFileContents({
-              owner,
-              repo,
-              path,
-              message,
-              content: Buffer.from(content).toString('base64'),
-              branch
-            });
+          script: console.log(context)
