@@ -22,16 +22,10 @@ jobs:
           echo "Merging files..."
           cat file*.txt > merged.txt
 
-      - name: Extract branch
-        uses: actions/github-script@v6
-        id: branch
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            const branch = context.ref.replace('refs/heads/', '');
-            console.log(context.ref);
-            console.log(branch);
-            return branch;
+      - name: Extract branch name
+        shell: bash
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        id: extract_branch
 
       - name: Commit and push
         run: |
@@ -42,5 +36,5 @@ jobs:
           echo "Committing"
           git commit -m "Merged files"
           echo "Pushing"
-          git push origin ${{steps.branch.outputs.result}}
+          git push origin ${{steps.extract_branch.outputs.result}}
           echo "All done"
