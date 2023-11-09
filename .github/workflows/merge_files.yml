@@ -23,12 +23,14 @@ jobs:
           cat file*.txt > merged.txt
 
       - name: Extract branch
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         id: branch
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            return context.ref.replace('refs/heads/', '');
+            const branch = context.ref.replace('refs/heads/', '');
+            console.log(branch);
+            return branch;
 
       - name: Commit and push
         run: |
