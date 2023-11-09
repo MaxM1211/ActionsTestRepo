@@ -35,6 +35,8 @@ jobs:
 
             const hex = hashSum.digest('hex');
 
+            console.log(hex)
+
             return hex;
 
       - name: Merge files
