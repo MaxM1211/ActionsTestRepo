@@ -12,38 +12,51 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
-      - name: Install Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "14"
+      #   - name: Install Node.js
+      #     uses: actions/setup-node@v2
+      #     with:
+      #       node-version: "14"
 
       - name: Merge files
         run: |
           echo "Merging files..."
           cat file*.txt > merged.txt
 
-      - name: Commit and push
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            const fs = require('fs');
-            const github = require('@actions/github');
-            const core = require('@actions/core');
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
 
-            const path = 'merged.txt';
-            const content = fs.readFileSync(path, 'utf8');
-            const message = 'Merged files';
-            const branch = github.context.ref.replace('refs/heads/', '');
-            const owner = github.context.repo.owner;
-            const repo = github.context.repo.repo;
+      - name: commit
+        run: |
+          # Stage the file, commit and push
+          git add merged.txt
+          git commit -m "Merged files"
+          git push origin master
 
-            console.log(Committing "${message}" to ${owner}/${repo} on branch ${branch});
-            github.getOctokit(core.getInput('github-token')).repos.createOrUpdateFileContents({
-              owner,
-              repo,
-              path,
-              message,
-              content: Buffer.from(content).toString('base64'),
-              branch
-            });
+    #   - name: Commit and push
+    #     uses: actions/github-script@v3
+    #     with:
+    #       github-token: ${{secrets.GITHUB_TOKEN}}
+    #       script: |
+    #         const fs = require('fs');
+    #         const github = require('@actions/github');
+    #         const core = require('@actions/core');
+
+    #         const path = 'merged.txt';
+    #         const content = fs.readFileSync(path, 'utf8');
+    #         const message = 'Merged files';
+    #         const branch = github.context.ref.replace('refs/heads/', '');
+    #         const owner = github.context.repo.owner;
+    #         const repo = github.context.repo.repo;
+
+    #         console.log(Committing "${message}" to ${owner}/${repo} on branch ${branch});
+    #         github.getOctokit(core.getInput('github-token')).repos.createOrUpdateFileContents({
+    #           owner,
+    #           repo,
+    #           path,
+    #           message,
+    #           content: Buffer.from(content).toString('base64'),
+    #           branch
+    #         });
