@@ -34,7 +34,7 @@ jobs:
       #       github_token: ${{secrets.GITHUB_TOKEN}}
 
       - name: Commit and push
-        uses: actions/github-script@v3
+        uses: actions/github-script@v5
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
