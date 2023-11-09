@@ -61,11 +61,9 @@ jobs:
             const owner = context.repo.owner;
             const repo = context.repo.repo;
 
-            console.log('Committing "${message}" to ${owner}/${repo} on branch ${branch}');
+            //console.log('Committing "${message}" to ${owner}/${repo} on branch ${branch}');
 
-            console.log(${{steps.sha.outputs.result}})
-
-            //console.log(github);
+            console.log(Push);
             github.rest.repos.createOrUpdateFileContents({
               owner,
               repo,
