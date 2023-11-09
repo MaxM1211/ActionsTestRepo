@@ -32,8 +32,8 @@ jobs:
         run: |
           # Stage the file, commit and push
           git add merged.txt
-          git commit -m "Merged files"
-          git push origin main
+          git commit -m "Auto merged files"
+          git push
 
     #   - name: Commit and push
     #     uses: actions/github-script@v3
