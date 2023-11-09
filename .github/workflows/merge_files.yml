@@ -38,7 +38,7 @@ jobs:
             const owner = github.context.repo.owner;
             const repo = github.context.repo.repo;
 
-            console.log("Committing "${message}" to ${owner}/${repo} on branch ${branch}");
+            console.log('Committing "${message}" to ${owner}/${repo} on branch ${branch}');
             github.getOctokit(core.getInput('github-token')).repos.createOrUpdateFileContents({
               owner,
               repo,
