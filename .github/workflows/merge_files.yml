@@ -30,7 +30,7 @@ jobs:
             const fs = require('fs');
 
             const fileBuffer = fs.readFileSync('merged.txt','utf8');
-            const hashSum = crypto.createHash('sha384');
+            const hashSum = crypto.createHash('sha512');
             hashSum.update(fileBuffer);
 
             const hex = hashSum.digest('hex');
