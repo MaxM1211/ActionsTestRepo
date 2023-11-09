@@ -33,7 +33,7 @@ jobs:
           # Stage the file, commit and push
           git add merged.txt
           git commit -m "Merged files"
-          git push origin master
+          git push origin main
 
     #   - name: Commit and push
     #     uses: actions/github-script@v3
