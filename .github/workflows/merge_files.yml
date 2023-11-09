@@ -22,21 +22,22 @@ jobs:
           echo "Merging files..."
           cat file*.txt > merged.txt
 
-      - name: Commit and push
-        uses: actions/github-script@v3
+      - name: Extract branch
+        uses: actions/github-script@v5
+        id: branch
         with:
-            github-token: ${{secrets.GITHUB_TOKEN}}
-            script: |
-                console.log(context["pull_requests"])
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            return context.ref.replace('refs/heads/', '');
 
       - name: Commit and push
         run: |
-            git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            git config --global user.name "github-actions[bot]"
-            echo "Staging"
-            git add merged.txt
-            echo "Committing"
-            git commit -m "Merged files"
-            echo "Pushing"
-            git push $(context.pull_request.head)
-            echo "All done"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          echo "Staging"
+          git add merged.txt
+          echo "Committing"
+          git commit -m "Merged files"
+          echo "Pushing"
+          git push origin ${{steps.branch.outputs.result}}
+          echo "All done"
