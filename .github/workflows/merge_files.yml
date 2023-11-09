@@ -48,7 +48,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
-          
+
           script: |
             const fs = require('fs');
 
@@ -72,5 +72,5 @@ jobs:
               message,
               content: Buffer.from(content).toString('base64'),
               branch,
-              sha: "30c6df168f81ba84e00f6feeb44a5af97fb100757c01c96048cfca771e321fc4"
+              sha: "${{steps.sha.outputs.result}}"
             });
