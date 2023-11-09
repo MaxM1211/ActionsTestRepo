@@ -28,8 +28,8 @@ jobs:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
             const fs = require('fs');
-            const github = require('@actions/github');
-            const core = require('@actions/core');
+            // const github = require('@actions/github');
+            // const core = require('@actions/core');
 
             const path = 'merged.txt';
             const content = fs.readFileSync(path, 'utf8');
