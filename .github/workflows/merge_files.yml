@@ -27,7 +27,7 @@ jobs:
         with:
             github-token: ${{secrets.GITHUB_TOKEN}}
             script: |
-                console.log(context.head)
+                console.log(context["pull_requests"])
 
       - name: Commit and push
         run: |
