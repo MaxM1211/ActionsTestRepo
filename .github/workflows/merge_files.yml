@@ -29,15 +29,15 @@ jobs:
             const crypto = require('crypto');
             const fs = require('fs');
 
-            const fileBuffer = fs.readFileSync('merged.txt');
-            const hashSum = crypto.createHash('sha256');
+            const fileBuffer = fs.readFileSync('merged.txt','utf8');
+            const hashSum = crypto.createHash('sha1');
             hashSum.update(fileBuffer);
 
             const hex = hashSum.digest('hex');
 
             console.log(hex)
 
-            return "1ad6cc1b4acf7e8cc79cde89ed5478da70fa220f00215c109b9991dab41c1c47";
+            return hex;
 
       - name: Merge files
         run: |
