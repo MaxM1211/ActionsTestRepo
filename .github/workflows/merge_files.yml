@@ -29,5 +29,5 @@ jobs:
             echo "Committing"
             git add merged.txt
             git commit -m "Merged files"
-            git push
+            git push $(context.pull_request.head)
             echo "Commited"
