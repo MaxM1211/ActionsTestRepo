@@ -37,7 +37,7 @@ jobs:
 
             console.log(hex)
 
-            return hex;
+            return "1ad6cc1b4acf7e8cc79cde89ed5478da70fa220f00215c109b9991dab41c1c47";
 
       - name: Merge files
         run: |
