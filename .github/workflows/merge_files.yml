@@ -36,5 +36,5 @@ jobs:
           echo "Committing"
           git commit -m "Merged files"
           echo "Pushing"
-          git push origin ${{steps.extract_branch.outputs.result}}
+          git push origin ${{steps.extract_branch.outputs.branch}}
           echo "All done"
