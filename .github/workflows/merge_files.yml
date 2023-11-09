@@ -26,18 +26,9 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const crypto = require('crypto');
-            const fs = require('fs');
-
-            const fileBuffer = fs.readFileSync('merged.txt','utf8');
-            const hashSum = crypto.createHash('sha512');
-            hashSum.update(fileBuffer);
-
-            const hex = hashSum.digest('hex');
-
-            console.log(hex)
-
-            return hex;
+            const response = await fetch("https://api.github.com/repos/MaxM1211/ActionsTestRepo/main/merged.txt"
+            const sha = await response.json()["sha"]
+            return sha;
 
       - name: Merge files
         run: |
