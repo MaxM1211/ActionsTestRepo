@@ -23,27 +23,9 @@ jobs:
           cat file*.txt > merged.txt
 
       - name: Commit and push
-        uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            const fs = require('fs');
-            const github_action = require('@actions/github');
-            // const core = require('@actions/core');
-
-            const path = 'merged.txt';
-            const content = fs.readFileSync(path, 'utf8');
-            const message = 'Merged files';
-            const branch = context.ref.replace('refs/heads/', '');
-            const owner = context.repo.owner;
-            const repo = context.repo.repo;
-
-            console.log('Committing "${message}" to ${owner}/${repo} on branch ${branch}');
-            github_action.getOctokit(core.getInput('github-token')).repos.createOrUpdateFileContents({
-              owner,
-              repo,
-              path,
-              message,
-              content: Buffer.from(content).toString('base64'),
-              branch
-            });
+        run: |
+            echo "Committing"
+            git add merged.txt
+            git commit -m "Merged files"
+            git push
+            echo "Commited"
