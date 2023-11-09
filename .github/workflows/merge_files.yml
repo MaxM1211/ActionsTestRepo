@@ -64,7 +64,7 @@ jobs:
 
             //console.log('Committing "${message}" to ${owner}/${repo} on branch ${branch}');
 
-            console.log(Push);
+            console.log('Push');
             github.rest.repos.createOrUpdateFileContents({
               owner,
               repo,
