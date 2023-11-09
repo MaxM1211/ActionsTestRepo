@@ -24,6 +24,8 @@ jobs:
 
       - name: Commit and push
         run: |
+            git config --global user.email "'github-actions[bot]@users.noreply.github.com'"
+            git config --global user.name "github-actions[bot]"
             echo "Committing"
             git add merged.txt
             git commit -m "Merged files"
